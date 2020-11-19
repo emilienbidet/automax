@@ -26,6 +26,22 @@ public class Automate {
         delta.addAll(states);
     }
 
+    public boolean verify(String s) {
+        State currentState = initialState;
+
+        char[] word = s.toCharArray();
+
+        for (int i = 0; i < word.length; i++) {
+            currentState = currentState.getTransition(word[i]);
+            System.out.println(currentState);
+            if (currentState == null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
     /**
      * Method to create an Automate from the file given.
      * @param file the name of the file
@@ -59,7 +75,7 @@ public class Automate {
             // Add all transistions
             for (int i = 1; i < line.length; i++) {
                 buffer = line[i].split(transitionSeparator);
-                transState = new State(buffer[1]);
+                transState = new State(buffer[1].toUpperCase());
                 for (State s:delta) {
                     if (s.equals(transState)){
                         transState = s;
