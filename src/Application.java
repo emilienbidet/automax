@@ -22,6 +22,7 @@ public class Application {
 
 
         Automate hhmmm = Automate.createAutomateFromFile("hhmm.csv", "HH:MM", ',', "#");
+        System.out.println(hhmmm.verify("00:00"));
 
 
 
