@@ -11,6 +11,10 @@ public class State {
         this.transistions = new HashMap<>();
     }
 
+    public State getTransition(Character c) {
+        return transistions.get(c);
+    }
+
     public boolean equals(Object o) {
         return o instanceof State && ((State) o).name.equals(this.name);
     }
