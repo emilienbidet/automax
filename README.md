@@ -2,19 +2,35 @@
 
 Tool to create automates and to try values 
 
-## Create your automate
-### From Java
-#### Method
-#### Example
-### From a CSV File
+## Installation
 
-Optimize your time by creating your automate with a csv file
-To create an automate from a csv file follow theses two parts 
-#### CVS File
+Simply clone the [project repository](https://gitlab.com/emilienbidet/automate-maker) in your directory;
+
+```bash
+git clone https://gitlab.com/emilienbidet/automate-maker
+```
+## Usage
+### Create your automate
+#### From Java
+##### Create states
+###### Method
+###### Example
+##### Add transitions
+###### Method
+###### Example
+##### Create the automate
+###### Method
+###### Example
+#### From a CSV File
+
+Optimize your time by creating your automate with a csv file.
+To make your own automate from a csv file follow theses two parts.
+
+##### CVS File
 
 Firstly, you have to create the csv file and to fill it properly with your automate attributes.
 
-##### Method
+###### Method
 
 Create a csv file and fill it by following this structure :
 
@@ -27,7 +43,7 @@ Create a csv file and fill it by following this structure :
 * Transition's left part is the value that's bring to the next state
 * Transition's right part is the next state
 
-##### Example
+###### Example
 
 Example of an automate to recognize HH:MM format.
 
@@ -47,41 +63,31 @@ Automate attributes :
 * Final state : M
 * Transition example : From H2 to H by 0
 
-#### In Java
+##### Java code
 
 Now your automate is created, all you have to do is instantiate it in your java program.
 
-##### Method
+###### Method
 
-Use the Automate's static function to create yours
+Use the automate's static function to iniate yours.
 ```java
 Automate.createAutomateFromFile(FileName, AutomateName, ElementSeparator, TransitionSeparator);
 ```
 
-##### Example
+###### Example
 
-
-
-## Installation
-
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
-
-```bash
-pip install foobar
+Example of an automate to recognize HH:MM format.
+```java
+Automate.createAutomateFromFile("hhmm.csv", "HH:MM Automate", ',', "#");
 ```
+
+Congratulations !! You create your automate !
+
+
+
 
 Pour aller plus loin
 ajouter une ligne en entete du fichier Csv avec le nom l'état inital et les états finaux pour optimiser encore plus la création des automates 
-
-## Usage
-
-```python
-import foobar
-
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
-```
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
