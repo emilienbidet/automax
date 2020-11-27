@@ -25,6 +25,14 @@ public class Automate {
     }
 
     /**
+     * Method to get the automate's name
+     * @return name of the automate
+     */
+    public String getName() {
+        return this.name;
+    }
+
+    /**
      * Method to add state to the current delta
      * @param state state to add
      */
@@ -60,7 +68,7 @@ public class Automate {
 
         for (int i = 0; i < word.length; i++) {
             currentState = currentState.getNextState(String.valueOf(word[i]));
-            System.out.println(currentState); // Watch the path
+            // System.out.println(currentState); // Uncomment to print the path
             if (currentState == null) {
                 return false;
             }
