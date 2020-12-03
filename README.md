@@ -13,8 +13,29 @@ git clone https://gitlab.com/emilienbidet/automate-maker
 ### Create your automate
 #### From Java
 ##### Create states
+
+First, you have to create all your states like this :
+
 ###### Method
+
+```java
+State state1 = new State(name1)
+State state2 = new State(name2)
+State state2 = new State(name2)
+...
+```
+
 ###### Example
+
+```java
+State E0 = new State("E0")
+State E0 = new State("E0")
+State E0 = new State("E0")
+State E0 = new State("E0")
+State E0 = new State("E0")
+State E0 = new State("E0")
+State E0 = new State("E0")
+```
 ##### Add transitions
 ###### Method
 ###### Example
@@ -81,7 +102,7 @@ Example of an automate to recognize HH:MM format.
 Automate.createAutomateFromFile("hhmm.csv", "HH:MM Automate", ',', "#");
 ```
 
-Congratulations !! You create your automate !
+Congratulations !! You created your own automate !
 
 
 
