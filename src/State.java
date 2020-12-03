@@ -38,7 +38,7 @@ public class State {
     /**
      * Method to compare to know if the given state is equals to the current one
      * @param o state to compare
-     * @return true if both are same
+     * @return true if both have same name
      */
     public boolean equals(Object o) {
         return o instanceof State && ((State) o).name.equals(this.name);
