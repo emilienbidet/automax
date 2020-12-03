@@ -1,21 +1,35 @@
+import org.json.simple.parser.ParseException;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Application {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ParseException {
 
         // Add automates to the list
         ArrayList<Automate> automates = new ArrayList<>();
-        automates.add(Automate.createAutomateFromFile("hhmm.csv", "HH:MM", ',', "#"));
-        automates.add(Automate.createAutomateFromFile("smileys.csv", "Smileys", ',', "#"));
-        automates.add(Automate.createAutomateFromFile("jjmmaa.csv", "JJ/MM/AAAA", ',', "#"));
-        automates.add(Automate.createAutomateFromFile("hhmmss.csv", "HH:MM:SS", ',', "#"));
-        automates.add(Automate.createAutomateFromFile("email.csv", "email", ',', "#"));
-        automates.add(Automate.createAutomateFromFile("emailList.csv", "emailList", ',', "#"));
-        automates.add(Automate.createAutomateFromFile("polynomials.csv", "polynomials", ',', "#"));
+        automates.add(Automate.createAutomateFromCSVFile("automates/csv/hhmm.csv", ',', "#"));
+        automates.add(Automate.createAutomateFromCSVFile("automates/csv/smileys.csv", ',', "#"));
+        automates.add(Automate.createAutomateFromCSVFile("automates/csv/jjmmaa.csv", ',', "#"));
+        automates.add(Automate.createAutomateFromCSVFile("automates/csv/hhmmss.csv", ',', "#"));
+        automates.add(Automate.createAutomateFromCSVFile("automates/csv/email.csv", ',', "#"));
+        automates.add(Automate.createAutomateFromCSVFile("automates/csv/emailList.csv", ',', "#"));
+        automates.add(Automate.createAutomateFromCSVFile("automates/csv/polynomials.csv", ',', "#"));
 
+        // Uncomment to test automates from tp with different types of files
+        // testCsvAutomates();
+        // testJsonAutomates();
 
+        // Run the application
+        runApplication(automates);
+    }
+
+    /**
+     * Method to run the application
+     * @param automates automates to list
+     */
+    public static void runApplication(ArrayList<Automate> automates) {
         // Get the user's choice
         int choice = getAutomateChoice(getMainMenu(automates), 1, automates.size() + 1);
         String stringToAnalyse = "";
@@ -87,6 +101,11 @@ public class Application {
         return menu;
     }
 
+    /**
+     * Metho to get the automate menu
+     * @param automate automate
+     * @return the menu of the automate
+     */
     public static String getAutomateMenu(Automate automate) {
         String menu = "";
         menu += "---------------- Automate " + automate.getName() + " ----------------\n";
@@ -129,8 +148,11 @@ public class Application {
         h1.addTransition("0", m);
         h2.addTransition("1", m);
 
-        // Declare the automate
-        Automate automateTest = new Automate("00 or 11", e0, m);
+        // Declare the automate with his initial state
+        Automate automateTest = new Automate("00 or 11", e0);
+
+        // Add automate's final states
+        automateTest.addFinalState(m);
 
         // Finaly, add all states to the automate declared before
         automateTest.addState(e0);
@@ -140,36 +162,47 @@ public class Application {
     }
 
     /**
-     * Method to test tp's automates
+     * Method to test tp's automates with csv files
      * @throws IOException the file can't be find
      */
-    public static void testAutomates() throws IOException {
+    public static void testCsvAutomates() throws IOException {
         // HH:MM automate
-        Automate hhmm = Automate.createAutomateFromFile("hhmm.csv", "HH:MM", ',', "#");
+        Automate hhmm = Automate.createAutomateFromCSVFile("automates/csv/hhmm.csv", ',', "#");
         System.out.println(hhmm.verify("21:30")); // Time to sleep
 
         // Smiley automate
-        Automate smileys = Automate.createAutomateFromFile("smileys.csv", "Smileys", ',', "#");
+        Automate smileys = Automate.createAutomateFromCSVFile("automates/csv/smileys.csv", ',', "#");
         System.out.println(smileys.verify(":-)")); // Be happy
 
         // JJ/MM/AAAA automate
-        Automate jjmmaa = Automate.createAutomateFromFile("jjmmaa.csv", "JJ/MM/AAAA", ',', "#");
+        Automate jjmmaa = Automate.createAutomateFromCSVFile("automates/csv/jjmmaa.csv", ',', "#");
         System.out.println(jjmmaa.verify("02/07/2052")); // There may be aliens 👽
 
         // HH:MM:SS automate
-        Automate hhmmss = Automate.createAutomateFromFile("hhmmss.csv", "HH:MM:SS", ',', "#");
+        Automate hhmmss = Automate.createAutomateFromCSVFile("automates/csv/hhmmss.csv", ',', "#");
         System.out.println(hhmmss.verify("16:00:00")); // Time to snack ^^
 
         // email automate
-        Automate email = Automate.createAutomateFromFile("email.csv", "email", ',', "#");
+        Automate email = Automate.createAutomateFromCSVFile("automates/csv/email.csv", ',', "#");
         System.out.println(email.verify("emilien-bidet@gmail.com")); // Secret agent email
 
         // email list automate
-        Automate emailList = Automate.createAutomateFromFile("emailList.csv", "emailList", ',', "#");
+        Automate emailList = Automate.createAutomateFromCSVFile("automates/csv/emailList.csv", ',', "#");
         System.out.println(emailList.verify("emilien-bidet@gmail.com;aRealSpy@gouv.fr")); // Secret agent emails
 
         // polynomials
-        Automate polynomials = Automate.createAutomateFromFile("polynomials.csv", "polynomials", ',', "#");
+        Automate polynomials = Automate.createAutomateFromCSVFile("automates/csv/polynomials.csv", ',', "#");
         System.out.println(polynomials.verify("14X**2 + 25X - 25")); // Love potion formula
+    }
+
+    /**
+     * Method to test tp's automates with json files
+     * @throws IOException the file can't be find
+     * @throws ParseException the file is not build properly
+     */
+    public static void testJsonAutomates() throws IOException, ParseException {
+        // HH:MM automate
+        Automate hhmm = Automate.createAutomateFromJsonFile("automates/json/hhmm.json");
+        System.out.println(hhmm.verify("21:30")); // Time to sleep
     }
 }

@@ -26,19 +26,9 @@ public class State {
     }
 
     /**
-     * Method to copy the current state
-     * @return copy of the current state
-     */
-    public State copy() {
-        State state = new State(this.name);
-        state.transistions = new HashMap<>(this.transistions);
-        return state;
-    }
-
-    /**
      * Method to compare to know if the given state is equals to the current one
      * @param o state to compare
-     * @return true if both are same
+     * @return true if both have same name
      */
     public boolean equals(Object o) {
         return o instanceof State && ((State) o).name.equals(this.name);
