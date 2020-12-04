@@ -1,9 +1,11 @@
 import org.json.simple.parser.ParseException;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Application class made to run the menu and test automates
+ */
 public class Application {
     public static void main(String[] args) throws IOException, ParseException {
 

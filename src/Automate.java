@@ -1,5 +1,4 @@
 import com.opencsv.CSVReader;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,6 +7,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+/**
+ * Automate class whiwh contains a name, an initial state, a final state and more states with their transitions between.
+ */
 public class Automate {
 
     private String name;

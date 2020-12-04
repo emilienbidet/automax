@@ -1,6 +1,9 @@
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ * State class which is a state from a given automate with his transitions between other states.
+ */
 public class State {
 
     private String name;
